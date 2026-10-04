@@ -1,5 +1,0 @@
-if(EXISTS "/Users/yulepark/Projects/miniDB/build/minidb_tests-b12d07c_tests.cmake")
-  include("/Users/yulepark/Projects/miniDB/build/minidb_tests-b12d07c_tests.cmake")
-else()
-  add_test(minidb_tests_NOT_BUILT-b12d07c minidb_tests_NOT_BUILT-b12d07c)
-endif()

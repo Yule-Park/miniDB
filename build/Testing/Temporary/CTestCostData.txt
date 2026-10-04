@@ -1,2 +1,0 @@
-Catch2 is working 2 0.00975219
----
