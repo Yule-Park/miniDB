@@ -32,6 +32,12 @@ enable_testing()
 add_executable(minidb_tests
     tests/common/test_tester.cpp
 )
+target_include_directories(minidb_tests PRIVATE
+    ${PROJECT_SOURCE_DIR}/include
+)
+target_include_directories(minidb PRIVATE
+    ${PROJECT_SOURCE_DIR}/include
+)
 
 target_link_libraries(minidb_tests PRIVATE
     Catch2::Catch2WithMain
@@ -42,8 +48,34 @@ target_compile_options(minidb_tests PRIVATE
     -Werror
     -pedantic
 )
-list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+add_test(
+    NAME minidb_tests
+    COMMAND minidb_tests
+)
 
-include(Catch)
+option(MINIDB_ENABLE_SANITIZERS
+    "Enable AddressSanitizer and UndefinedBehaviorSanitizer"
+    ON
+)
 
-catch_discover_tests(minidb_tests)
+if(MINIDB_ENABLE_SANITIZERS)
+    target_compile_options(minidb PRIVATE
+        -fsanitize=address,undefined
+        -fno-omit-frame-pointer
+        -g
+    )
+
+    target_link_options(minidb PRIVATE
+        -fsanitize=address,undefined
+    )
+
+    target_compile_options(minidb_tests PRIVATE
+        -fsanitize=address,undefined
+        -fno-omit-frame-pointer
+        -g
+    )
+
+    target_link_options(minidb_tests PRIVATE
+        -fsanitize=address,undefined
+    )
+endif()
