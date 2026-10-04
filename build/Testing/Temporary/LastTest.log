@@ -1,0 +1,23 @@
+Start testing: Oct 04 00:31 CDT
+----------------------------------------------------------
+1/1 Testing: Catch2 is working
+1/1 Test: Catch2 is working
+Command: "/Users/yulepark/Projects/miniDB/build/minidb_tests" "Catch2 is working"
+Directory: /Users/yulepark/Projects/miniDB/build
+"Catch2 is working" start time: Oct 04 00:31 CDT
+Output:
+----------------------------------------------------------
+Filters: "Catch2 is working"
+Randomness seeded to: 510253881
+===============================================================================
+All tests passed (1 assertion in 1 test case)
+
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"Catch2 is working" end time: Oct 04 00:31 CDT
+"Catch2 is working" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 04 00:31 CDT
