@@ -27,10 +27,15 @@ FetchContent_Declare(
     GIT_TAG v3.8.1
 )
 
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 FetchContent_MakeAvailable(Catch2)
 enable_testing()
+
 add_executable(minidb_tests
     tests/common/test_tester.cpp
+    tests/storage/page_test.cpp
 )
 target_include_directories(minidb_tests PRIVATE
     ${PROJECT_SOURCE_DIR}/include
@@ -52,6 +57,7 @@ add_test(
     NAME minidb_tests
     COMMAND minidb_tests
 )
+
 
 option(MINIDB_ENABLE_SANITIZERS
     "Enable AddressSanitizer and UndefinedBehaviorSanitizer"
