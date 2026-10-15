@@ -57,7 +57,10 @@ target_compile_options(minidb_tests PRIVATE
     -Werror
     -pedantic
 )
-catch_discover_tests(minidb_tests DISCOVERY_MODE PRE_TEST)
+catch_discover_tests(minidb_tests
+    DISCOVERY_MODE PRE_TEST
+    PROPERTIES RUN_SERIAL TRUE
+)
 
 
 option(MINIDB_ENABLE_SANITIZERS

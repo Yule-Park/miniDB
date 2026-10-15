@@ -42,7 +42,7 @@ page_id_t DiskManager::allocate_page() {
 }
 void DiskManager::read_page(page_id_t page_id, Page& page) {
     auto pages = std::filesystem::file_size(file_name_) / PAGE_SIZE;
-    if (page_id < 0 || static_cast<std::uintmax_t>(page_id) >= pages) {
+    if (static_cast<std::uintmax_t>(page_id) >= pages) {
         throw std::out_of_range("Page ID is out of valid range");
     }
     std::streamoff offset = static_cast<std::streamoff>(page_id) * PAGE_SIZE;
@@ -57,7 +57,7 @@ void DiskManager::read_page(page_id_t page_id, Page& page) {
 }
 void DiskManager::write_page(page_id_t page_id, const Page& page) {
     auto pages = std::filesystem::file_size(file_name_) / PAGE_SIZE;
-    if (page_id < 0 || static_cast<std::uintmax_t>(page_id) >= pages) {
+    if (static_cast<std::uintmax_t>(page_id) >= pages) {
         throw std::out_of_range("Page ID is out of valid range");
     }
     std::streamoff offset = static_cast<std::streamoff>(page_id) * PAGE_SIZE;
