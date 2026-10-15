@@ -31,11 +31,15 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 FetchContent_MakeAvailable(Catch2)
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/extras)
+include(Catch)
 enable_testing()
 
 add_executable(minidb_tests
     tests/common/test_tester.cpp
     tests/storage/page_test.cpp
+    src/disk_manager.cpp
+    tests/storage/disk_manager_test.cpp
 )
 target_include_directories(minidb_tests PRIVATE
     ${PROJECT_SOURCE_DIR}/include
@@ -53,10 +57,7 @@ target_compile_options(minidb_tests PRIVATE
     -Werror
     -pedantic
 )
-add_test(
-    NAME minidb_tests
-    COMMAND minidb_tests
-)
+catch_discover_tests(minidb_tests DISCOVERY_MODE PRE_TEST)
 
 
 option(MINIDB_ENABLE_SANITIZERS

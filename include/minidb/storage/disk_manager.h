@@ -1,8 +1,12 @@
 #pragma once
-#include "config.h"
-#include "page.h"
+#include "minidb/common/config.h"
+#include "minidb/storage/page.h"
 #include <string>
 #include <fstream>
+#include <limits>
+#include <array>
+#include <filesystem>
+#include <stdexcept>
 namespace minidb {
     class DiskManager {
         public:
