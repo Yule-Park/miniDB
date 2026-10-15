@@ -21,7 +21,7 @@ DiskManager::DiskManager(const std::string& file_name)
 }
 page_id_t DiskManager::allocate_page() {
     auto pages = std::filesystem::file_size(file_name_) / PAGE_SIZE;
-    if (pages > std::numeric_limits<page_id_t>::max()) {
+    if (pages >= std::numeric_limits<page_id_t>::max()) {
         throw std::runtime_error("Maximum number of pages reached");
     }
     page_id_t new_page_id = static_cast<page_id_t>(pages);
